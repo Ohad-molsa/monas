@@ -28,10 +28,11 @@
             align-items: center;
             justify-content: space-between;
             margin: 15px 0;
+		width: 90%;
         }
         label {
             font-size: 18px;
-            margin-inline: 10px;
+            margin-right: 10px;
         }
         input[type="text"] {
             flex: 1;
@@ -39,7 +40,7 @@
             font-size: 16px;
             border-radius: 5px;
             border: 1px solid #ccc;
-		margin-inline: 5px;
+		margin-right: 5px;
         }
         button {
             width: 100%;
@@ -63,7 +64,7 @@
         function sendEmail() {
             var name = document.getElementById("name").value;
             var checkbox = document.getElementById("confirm").checked;
-            var email = "example@example.com"; // החלף בכתובת המייל הרצויה
+            var email = "HadarMatzav@molsa.gov.il"; // החלף בכתובת המייל הרצויה
 
             if (!checkbox) {
                 alert("יש לסמן את התיבה לפני השליחה.");
@@ -74,15 +75,21 @@
                 alert("נא להזין את שמך.");
                 return;
             }
-
-            var mailtoLink = "mailto:" + email + "?subject=אישור קריאת הנחיות&body=" + encodeURIComponent("שם העובד/ת: " + name + "\nאני מאשר/ת שקראתי והבנתי את ההנחיות, ואפעל על פיהן בעבודתי במשרד.");
-            window.location.href = mailtoLink;
+			var rtl = "\u202B"; // RTL mark
+			var ltr = "\u202C"
+			var mailtoLink = "mailto:" + email + 
+			  "?subject=" + encodeURIComponent("אישור קריאת הנחיות") + 
+			  "&body=" + encodeURIComponent(
+				rtl + "שם העובד/ת: " + name + 
+				"\nאני מאשר/ת שקראתי והבנתי את ההנחיות המפורטות בלומדה בנושא סייבר ואבטחת מידע, ומצהיר/ה שאפעל על פיהן בעבודתי במשרד." + ltr
+				);
+			window.location.href = mailtoLink;
 			
 			var thankYouMessage = document.getElementById('thankYouMessage');
 			thankYouMessage.textContent = 'תודה! יש לשלוח את המייל שנפתח בחלון ה-Outlook.';
-			
         }
     </script>
+
 </head>
 <body>
     <div class="container">
